@@ -5,7 +5,7 @@
     </head>
     <body>
 
-      <form>
+      <form class="form-inline">
         <input type="text" id="inputText" placeholder="Veuillez saisir votre Telegram">
         <button type="submit" >Envoyer à Lison</button>
       </form>
@@ -21,7 +21,7 @@
         const form = document.querySelector('.form-inline');
 
         //grab an input
-        const inputEmail = form.querySelector('#inputEmail');
+        const inputEmail = form.querySelector('#inputText');
 
 
         // Your web app's Firebase configuration
@@ -52,13 +52,16 @@
 
             }
 
-              document.getElementById('inputText').addEventListener('submit', function(){
-                evt.preventDefault();
-                firebasePush(inputEmail);
+        //push on form submit
+            if (form) {
+                form.addEventListener('submit', function (evt) {
+                    evt.preventDefault();
+                    firebasePush(inputEmail);
 
-                //shows alert if everything went well.
-                return alert('Merci pour votre message!');
-              });
+                    //shows alert if everything went well.
+                    return alert('Merci pour votre message!');
+                })
+            }
 
       </script>
         <h1>Message pour Lison</h1>
