@@ -6,7 +6,7 @@
     <body>
 
       <form>
-        <input type="email" id="inputEmail" placeholder="Veuillez saisir votre Telegram">
+        <input type="text" id="inputText" placeholder="Veuillez saisir votre Telegram">
         <button type="submit" >Envoyer à Lison</button>
       </form>
 
@@ -52,16 +52,13 @@
 
             }
 
-        //push on form submit
-            if (form) {
-                form.addEventListener('submit', function (evt) {
-                    evt.preventDefault();
-                    firebasePush(inputEmail);
+              document.getElementById('inputText').addEventListener('submit', function(){
+                evt.preventDefault();
+                firebasePush(inputEmail);
 
-                    //shows alert if everything went well.
-                    return alert('Merci pour votre message!');
-                })
-            }
+                //shows alert if everything went well.
+                return alert('Merci pour votre message!');
+              });
 
       </script>
         <h1>Message pour Lison</h1>
