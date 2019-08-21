@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Message pour Lison</title>
+    </head>
+    <body>
+
+      <form>
+        <input type="email" id="inputEmail" placeholder="Veuillez saisir votre Telegram">
+        <button type="submit" >Envoyer à Lison</button>
+      </form>
+
+
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
+
+
+      <script>
+
+        //grab a form
+        const form = document.querySelector('.form-inline');
+
+        //grab an input
+        const inputEmail = form.querySelector('#inputEmail');
+
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyAFoh1HFEes3NkgLAcyMzc3y8KuFLiRw-U",
+          authDomain: "spcthermalprinter.firebaseapp.com",
+          databaseURL: "https://spcthermalprinter.firebaseio.com",
+          projectId: "spcthermalprinter",
+          storageBucket: "",
+          messagingSenderId: "303969092232",
+          appId: "1:303969092232:web:9bc765ee0d3c4440"
+        };
+
+        //create a functions to push
+            function firebasePush(input) {
+
+                //prevents from breaking
+                if (!firebase.apps.length) {
+                    firebase.initializeApp(firebaseConfig);
+                }
+
+                //push itself
+                var messageRefs = firebase.database().ref('Message').push().set(
+                    {
+                        mail: input.value
+                    }
+                );
+
+            }
+
+        //push on form submit
+            if (form) {
+                form.addEventListener('submit', function (evt) {
+                    evt.preventDefault();
+                    firebasePush(inputEmail);
+
+                    //shows alert if everything went well.
+                    return alert('Merci pour votre message!');
+                })
+            }
+
+      </script>
+        <h1>Message pour Lison</h1>
+        <p>This is a paragraph.</p>
+    </body>
+</html>
