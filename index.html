@@ -5,14 +5,19 @@
     </head>
     <body>
 
+
+        <h1>Message pour Lison</h1>
+
       <form class="form-inline">
         <input type="text" id="inputText" placeholder="Veuillez saisir votre Telegram">
-        <button type="submit" >Envoyer à Lison</button>
+        <button type="submit" >Envoyer to Lison</button>
       </form>
 
 
       <!-- The core Firebase JS SDK is always required and must be listed first -->
       <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-database.js"></script>
 
 
       <script>
@@ -43,12 +48,12 @@
                     firebase.initializeApp(firebaseConfig);
                 }
 
+                var database = firebase.database();
+
                 //push itself
-                var messageRefs = firebase.database().ref('Message').push().set(
-                    {
-                        mail: input.value
-                    }
-                );
+
+                database.ref('Message')
+                var messageRefs = database.ref('Message').update({messageText: input.value});
 
             }
 
@@ -64,7 +69,5 @@
             }
 
       </script>
-        <h1>Message pour Lison</h1>
-        <p>This is a paragraph.</p>
     </body>
 </html>
